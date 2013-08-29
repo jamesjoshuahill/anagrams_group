@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-array = ["stars", "stars", "tars", "mary", "army", "rats", "bananas"]
+#array = ["stars", "stars", "tars", "mary", "army", "rats", "bananas"]
+array = ARGV.uniq
 
 def anagrams_of(word, list)
   matching_words = []
@@ -12,10 +13,9 @@ def anagrams_of(word, list)
 end
 
 anagrams = []
-array.uniq!.each do |word|
+array.each do |word|
   anagrams << anagrams_of(word, array)
 end
-
 anagrams.uniq! { |list| list.first }
 
 puts anagrams.to_s

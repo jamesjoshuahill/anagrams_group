@@ -1,19 +1,21 @@
 def anagrams_group(words)
-  words_and_sorted_chars = {}
-  words.each do |word|
-    words_and_sorted_chars[word] = word.chars.sort
-  end
+  # Remove hash of sorted characters
+  # words_and_sorted_chars = {}
+  # words.each do |word|
+  #   words_and_sorted_chars[word] = word.chars.sort
+  # end
   anagrams_group = []
   until words.empty? do
     word_to_match = words.pop
     matching_words = [word_to_match]
     words.each do |word|
-      if words_and_sorted_chars[word] == words_and_sorted_chars[word_to_match]
+      # Sort the characters as part of the comparison
+      if word.chars.sort == word_to_match.chars.sort
         matching_words << word
         words.delete(word)
       end
     end
-    anagrams_group << [matching_words]
+    anagrams_group << matching_words
   end
   anagrams_group
 end

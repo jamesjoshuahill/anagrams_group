@@ -7,6 +7,7 @@ def anagrams_group(words)
   #   words_and_sorted_chars[word] = word.chars.sort
   # end
   anagrams_group = []
+  words.uniq!
   until words.empty? do
     word_to_match = words.pop
     matching_words = [word_to_match]

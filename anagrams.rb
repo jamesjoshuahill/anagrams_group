@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 def anagrams_group(words)
   # Remove hash of sorted characters
   # words_and_sorted_chars = {}
@@ -20,5 +22,5 @@ def anagrams_group(words)
   anagrams_group
 end
 
-list_of_words = %w{stars, mary, army, rats, tars, banana}
-puts anagrams_group(list_of_words).to_s
+# list_of_words = %w{stars, mary, army, rats, tars, banana}
+puts anagrams_group(ARGV).to_s

@@ -9,7 +9,7 @@ def anagrams_of(word, list)
       matching_words << list_word
     end
   end
-  matching_words
+  matching_words.sort
 end
 
 anagrams = []

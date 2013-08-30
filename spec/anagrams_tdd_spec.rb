@@ -11,20 +11,18 @@ describe AnagramsGroup do
 
   it 'should only allow an array of 2 or more words' do
     error_message = "Argument must be an array of 2 or more words"
-    expect {
-      AnagramsGroup.new({"some" => "words"})
-    }.to raise_error(ArgumentError, error_message)
-    expect {
-      AnagramsGroup.new(5)
-    }.to raise_error(ArgumentError, error_message)
-    expect {
-      AnagramsGroup.new(%w{hello})
-    }.to raise_error(ArgumentError, error_message)
+    expect { AnagramsGroup.new({"some" => "words"})
+      }.to raise_error(ArgumentError, error_message)
+    expect { AnagramsGroup.new(5)
+      }.to raise_error(ArgumentError, error_message)
+    expect { AnagramsGroup.new(%w{hello})
+      }.to raise_error(ArgumentError, error_message)
+    expect { AnagramsGroup.new([])
+      }.to raise_error(ArgumentError, error_message)
   end
 
-  it 'should not allow 0 words' do 
+  it 'should not allow no argument' do
     expect { AnagramsGroup.new() }.to raise_error(ArgumentError)
-    expect { AnagramsGroup.new([])}.to raise_error(ArgumentError)
   end
 
   it 'it should know if one word is an anagram of another' do

@@ -8,10 +8,6 @@ class AnagramsGroup
     @words = words.sort
   end
 
-  # def words
-  #   @words
-  # end
-
   def are_anagrams?(word1, word2)
     word1.chars.sort == word2.chars.sort
   end

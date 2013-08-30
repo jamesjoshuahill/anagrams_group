@@ -27,6 +27,17 @@ let(:anagram_group) { AnagramsGroup.new(%w{some words}) }
   it 'should know if one word is NOT an anagram of another' do
     expect(anagram_group.are_anagrams?("stars", "bananas")).to be_false
   end
+
+  it 'should return all the anagrams a word in the list' do
+    anagram_group = AnagramsGroup.new(%w{rats tars stars})
+    expect(anagram_group.all_anagrams_of("rats")).to eq %w{rats tars}
+    anagram_group = AnagramsGroup.new(%w{mary army stars})
+    expect(anagram_group.all_anagrams_of("mary")).to eq %w{mary army}
+  end
+
+  xit 'should return a list of all anagram groups for a list' do
+    expect(anagram_group.anagram_groups).to eq 
+  end
   
   xit 'Should create an empty container' do
 

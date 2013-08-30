@@ -4,8 +4,8 @@ describe AnagramsGroup do
 let(:anagram_group) { AnagramsGroup.new(%w{some words}) }
 
   it 'should accept an array of words as the argument' do
-    expect(anagram_group.words).to eq ["some", "words"]
-    expect(AnagramsGroup.new(%w{some other words}).words).to eq ["some", "other", "words"]
+    expect(anagram_group.words).to eq %w{some words}
+    expect(AnagramsGroup.new(%w{some other words}).words).to eq %w{other some words}
     expect(anagram_group.words.class).to eq Array
   end
 
@@ -28,18 +28,19 @@ let(:anagram_group) { AnagramsGroup.new(%w{some words}) }
     expect(anagram_group.are_anagrams?("stars", "bananas")).to be_false
   end
 
-  it 'should return all the anagrams a word in the list' do
+  it 'should know all the anagrams of a word in the list' do
     anagram_group = AnagramsGroup.new(%w{rats tars stars})
     expect(anagram_group.all_anagrams_of("rats")).to eq %w{rats tars}
     anagram_group = AnagramsGroup.new(%w{mary army stars})
-    expect(anagram_group.all_anagrams_of("mary")).to eq %w{mary army}
+    expect(anagram_group.all_anagrams_of("mary")).to eq %w{army mary}
   end
 
-  xit 'should return a list of all anagram groups for a list' do
-    expect(anagram_group.anagram_groups).to eq 
+  it 'should provide a list of all anagram groups' do
+    anagram_group = AnagramsGroup.new(%w{rats tars mary army stars banana})
+    expect(anagram_group.anagram_groups).to eq [%w{army mary}, %w{banana}, %w{rats tars}, %w{stars}]
+
+    anagram_group = AnagramsGroup.new(%w{lake pool kale loop valid})
+    expect(anagram_group.anagram_groups).to eq [%w{kale lake}, %w{loop pool}, %w{valid}]
   end
   
-  xit 'Should create an empty container' do
-
-  end
 end

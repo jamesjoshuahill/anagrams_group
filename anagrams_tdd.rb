@@ -4,7 +4,7 @@ class AnagramsGroup
   def initialize(words)
     raise ArgumentError.new() if words.empty?
     raise ArgumentError.new() if words.class != Array
-    @words = words
+    @words = words.sort
   end
 
   # def words
@@ -19,4 +19,12 @@ class AnagramsGroup
     @words.select { |word| are_anagrams?(word, word_to_match) }
   end
 
+  def anagram_groups
+    @words.map { |word| all_anagrams_of(word) }.uniq
+  end
 end
+
+#simple execution test
+puts AnagramsGroup.new(
+  %w{rats tars stars banana mary army}
+).anagram_groups.to_s

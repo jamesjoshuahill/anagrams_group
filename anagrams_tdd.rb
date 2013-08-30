@@ -2,8 +2,9 @@ class AnagramsGroup
   attr_reader :words
 
   def initialize(words)
-    raise ArgumentError.new() if words.empty?
-    raise ArgumentError.new() if words.class != Array
+    error_message = "Argument must be an array of 2 or more words"
+    raise ArgumentError.new(error_message) if words.class != Array
+    raise ArgumentError.new(error_message) if words.count < 2
     @words = words.sort
   end
 

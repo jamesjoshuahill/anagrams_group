@@ -1,18 +1,25 @@
 require './anagrams_tdd'
 
 describe AnagramsGroup do
-let(:anagram_group) { AnagramsGroup.new(%w{some words}) }
+  let(:anagram_group) { AnagramsGroup.new(%w{some words}) }
 
-  it 'should accept an array of words as the argument' do
+  it 'should accept an array of 2 or more words as the argument' do
     expect(anagram_group.words).to eq %w{some words}
     expect(AnagramsGroup.new(%w{some other words}).words).to eq %w{other some words}
-    expect(anagram_group.words.class).to eq Array
+    expect(anagram_group.words).to be_an Array
   end
 
-  it 'should only allow an array of words' do
+  it 'should only allow an array of 2 or more words' do
+    error_message = "Argument must be an array of 2 or more words"
     expect {
       AnagramsGroup.new({"some" => "words"})
-    }.to raise_error(ArgumentError)
+    }.to raise_error(ArgumentError, error_message)
+    expect {
+      AnagramsGroup.new(5)
+    }.to raise_error(ArgumentError, error_message)
+    expect {
+      AnagramsGroup.new(%w{hello})
+    }.to raise_error(ArgumentError, error_message)
   end
 
   it 'should not allow 0 words' do 
